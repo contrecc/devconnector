@@ -236,16 +236,12 @@ router.delete(
   (req, res) => {
     Profile.findOne({ user: req.user.id })
       .then(profile => {
-        // Get remove index
-        const removeIndex = profile.experience
-          .map(item => item.id)
-          .indexOf(req.params.exp_id);
+        profile.experience.remove({ _id: req.params.exp_id });
 
-        //Splice the index out of the array
-        profile.experience.splice(removeIndex, 1);
-
-        //Save
-        profile.save().then(profile => res.json(profile));
+        profile
+          .save()
+          .then(profile => res.json(profile.experience))
+          .catch(err => res.json(err));
       })
       .catch(err => res.status(404).json(err));
   }
@@ -260,16 +256,13 @@ router.delete(
   (req, res) => {
     Profile.findOne({ user: req.user.id })
       .then(profile => {
-        // Get remove index
-        const removeIndex = profile.education
-          .map(item => item.id)
-          .indexOf(req.params.edu_id);
+       
+        profile.education.remove({ _id: req.params.edu_id });
 
-        //Splice the index out of the array
-        profile.education.splice(removeIndex, 1);
-
-        //Save
-        profile.save().then(profile => res.json(profile));
+        profile
+          .save()
+          .then(profile => res.json(profile.education))
+          .catch(err => res.json(err));
       })
       .catch(err => res.status(404).json(err));
   }

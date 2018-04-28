@@ -82,7 +82,8 @@ router.delete(
           post.remove().then(() => res.json({ success: true }));
         })
         .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
-    });
+    })
+    .catch(err => res.status(500).json({ profilenotfound: 'No profile found'}));
   }
 );
 
