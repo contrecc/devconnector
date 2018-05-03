@@ -3,11 +3,10 @@ import axios from 'axios';
 import {
   GET_PROFILE,
   PROFILE_LOADING,
-  GET_ERRORS,
   CLEAR_CURRENT_PROFILE
 } from './types';
 
-// Get current profile
+// Get current profile -- THUNK ACTION CREATOR
 export const getCurrentProfile = () => dispatch => {
   dispatch(setProfileLoading());
   axios
@@ -26,14 +25,14 @@ export const getCurrentProfile = () => dispatch => {
     );
 };
 
-// Profile loading
+// Profile Loading ACTION CREATOR
 export const setProfileLoading = () => {
   return {
     type: PROFILE_LOADING
   };
 };
 
-// Clear profile
+// Clear Profile ACTION CREATOR
 export const clearCurrentProfile = () => {
   return {
     type: CLEAR_CURRENT_PROFILE

@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode';
 
 import { GET_ERRORS, SET_CURRENT_USER } from './types';
 
-// Register User
+// Register User -- THUNK ACTION CREATOR
 export const registerUser = (userData, history) => dispatch => {
   axios
     .post('/api/users/register', userData)
@@ -18,6 +18,11 @@ export const registerUser = (userData, history) => dispatch => {
 };
 
 // Login - Get user token
+/*
+When attepting to dispatch a function instead of an action object, THUNK middleware will call that function with the "dispatch" method as
+the first argument (it also sends getState as the second argument, so if you need to dispatch an action depending on the state, you can check state first internally)
+This ACTION CREATOR would not be possible without THUNK. It would need to return an action object instead of a function that takes a parameter of dispatch
+*/
 export const loginUser = userData => dispatch => {
   axios
     .post('/api/users/login', userData)
@@ -41,7 +46,7 @@ export const loginUser = userData => dispatch => {
     );
 };
 
-// Set logged in user
+// Set logged in user ACTION CREATOR
 export const setCurrentUser = decoded => {
   return {
     type: SET_CURRENT_USER,
@@ -49,7 +54,8 @@ export const setCurrentUser = decoded => {
   };
 };
 
-// Log user out
+// Log user out -- THUNK ACTION CREATOR because it returns
+// a function that takes dispatch as its first parameter
 export const logoutUser = () => dispatch => {
   // Remove token from localStorage
   localStorage.removeItem('jwtToken');
