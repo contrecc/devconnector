@@ -7,7 +7,6 @@ import InputGroup from '../common/InputGroup';
 import TextFieldGroup from '../common/TextFieldGroup';
 import SelectListGroup from '../common/SelectListGroup';
 import { createProfile, getCurrentProfile } from '../../actions/profileActions';
-import isEmpty from '../../validation/is-empty';
 
 class CreateProfile extends Component {
   constructor(props) {
