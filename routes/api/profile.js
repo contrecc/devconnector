@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
+const prependHttp = require('prepend-http');
 
 // Load Validation
 const validateProfileInput = require('../../validation/profile');
@@ -137,6 +138,28 @@ router.post(
     socialFields.forEach(field => {
       if (req.body[field]) profileFields.social[field] = req.body[field];
     });
+
+    // User prependHttp to ensure secure user-submitted links
+    if (req.body.youtube)
+      profileFields.social.youtube = prependHttp(req.body.youtube, {
+        https: true
+      });
+    if (req.body.twitter)
+      profileFields.social.twitter = prependHttp(req.body.twitter, {
+        https: true
+      });
+    if (req.body.facebook)
+      profileFields.social.facebook = prependHttp(req.body.facebook, {
+        https: true
+      });
+    if (req.body.linkedin)
+      profileFields.social.linkedin = prependHttp(req.body.linkedin, {
+        https: true
+      });
+    if (req.body.instagram)
+      profileFields.social.instagram = prependHttp(req.body.instagram, {
+        https: true
+      });
 
     //Skills - Split into an array
     if (typeof req.body.skills !== 'undefined') {
