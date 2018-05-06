@@ -9,7 +9,6 @@ import { addEducation } from '../../actions/profileActions';
 class AddEducation extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       school: '',
       degree: '',
@@ -73,7 +72,7 @@ class AddEducation extends Component {
               </Link>
               <h1 className="display-4 text-center">Add Education</h1>
               <p className="lead text-center">
-                Add any school, bootcamp, etc. that you have attended
+                Add any school, bootcamp, etc that you have attended
               </p>
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit}>
@@ -121,12 +120,12 @@ class AddEducation extends Component {
                     className="form-check-input"
                     name="current"
                     value={this.state.current}
-                    check={this.state.current}
+                    checked={this.state.current}
                     onChange={this.onCheck}
                     id="current"
                   />
                   <label htmlFor="current" className="form-check-label">
-                    Current Education
+                    Current Job
                   </label>
                 </div>
                 <TextAreaFieldGroup

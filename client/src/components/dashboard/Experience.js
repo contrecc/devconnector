@@ -10,14 +10,16 @@ class Experience extends Component {
   }
 
   render() {
-    const experience = this.props.experience.map(exp => (
+    const experience = this.props.experience && this.props.experience;
+
+    const experienceTable = experience.map(exp => (
       <tr key={exp._id}>
         <td>{exp.company}</td>
         <td>{exp.title}</td>
         <td>
-          <Moment format="YYYY/MM/DD">{exp.from}</Moment> -{' '}
+          <Moment format="YYYY/MM/DD">{exp.from}</Moment> -
           {exp.to === null ? (
-            'Now'
+            ' Now'
           ) : (
             <Moment format="YYYY/MM/DD">{exp.to}</Moment>
           )}
@@ -32,7 +34,6 @@ class Experience extends Component {
         </td>
       </tr>
     ));
-
     return (
       <div>
         <h4 className="mb-4">Experience Credentials</h4>
@@ -44,8 +45,8 @@ class Experience extends Component {
               <th>Years</th>
               <th />
             </tr>
+            {experienceTable}
           </thead>
-          <tbody>{experience}</tbody>
         </table>
       </div>
     );
@@ -53,7 +54,8 @@ class Experience extends Component {
 }
 
 Experience.propTypes = {
-  deleteExperience: PropTypes.func.isRequired
+  deleteExperience: PropTypes.func.isRequired,
+  experience: PropTypes.array
 };
 
 export default connect(null, { deleteExperience })(Experience);

@@ -13,11 +13,6 @@ const Profile = require('../../models/Profile');
 //Load User Model
 const User = require('../../models/User');
 
-// @route   GET api/profile/test
-// @desc    Tests profile route
-// @access  Public
-router.get('/test', (req, res) => res.json({ msg: 'Profile Works' }));
-
 // @route   GET api/profile
 // @desc    Gets current user's profile
 // @access  Private
@@ -30,7 +25,7 @@ router.get(
     Profile.findOne({ user: req.user.id })
       .populate('user', ['name', 'avatar'])
       .then(profile => {
-        if (!profile) {
+        if (!profile || profile.length === 0) {
           errors.noprofile = 'There is no profile for this user';
           return res.status(404).json(errors);
         }
@@ -69,7 +64,7 @@ router.get('/handle/:handle', (req, res) => {
     .then(profile => {
       if (!profile) {
         errors.noprofile = 'There is no profile for this user';
-        res.status(404).json(errors);
+        return res.status(404).json(errors);
       }
       res.json(profile);
     })
@@ -87,7 +82,7 @@ router.get('/user/:user_id', (req, res) => {
     .then(profile => {
       if (!profile) {
         errors.noprofile = 'There is no profile for this user';
-        res.status(404).json(errors);
+        return res.status(404).json(errors);
       }
       res.json(profile);
     })
@@ -294,6 +289,7 @@ router.delete(
     Profile.findOne({ user: req.user.id })
       .then(profile => {
         profile.education.remove({ _id: req.params.edu_id });
+        console.log('successfully deleted the education'); //MUST REMOVE **
 
         profile
           .save()

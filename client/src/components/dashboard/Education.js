@@ -10,14 +10,17 @@ class Education extends Component {
   }
 
   render() {
-    const education = this.props.education.map(edu => (
+    const education = this.props.education && this.props.education;
+    console.log('Education Props In Render', education);
+
+    const educationTable = education.map(edu => (
       <tr key={edu._id}>
         <td>{edu.school}</td>
         <td>{edu.degree}</td>
         <td>
-          <Moment format="YYYY/MM/DD">{edu.from}</Moment> -{' '}
+          <Moment format="YYYY/MM/DD">{edu.from}</Moment> -
           {edu.to === null ? (
-            'Now'
+            ' Now'
           ) : (
             <Moment format="YYYY/MM/DD">{edu.to}</Moment>
           )}
@@ -32,7 +35,6 @@ class Education extends Component {
         </td>
       </tr>
     ));
-
     return (
       <div>
         <h4 className="mb-4">Education Credentials</h4>
@@ -45,7 +47,7 @@ class Education extends Component {
               <th />
             </tr>
           </thead>
-          <tbody>{education}</tbody>
+          <tbody>{educationTable}</tbody>
         </table>
       </div>
     );
@@ -53,7 +55,8 @@ class Education extends Component {
 }
 
 Education.propTypes = {
-  deleteEducation: PropTypes.func.isRequired
+  deleteEducation: PropTypes.func.isRequired,
+  education: PropTypes.array
 };
 
 export default connect(null, { deleteEducation })(Education);
