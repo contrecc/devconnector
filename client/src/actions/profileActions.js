@@ -33,18 +33,20 @@ export const getProfileByHandle = handle => dispatch => {
   dispatch(setProfileLoading());
   axios
     .get(`/api/profile/handle/${handle}`)
-    .then(res =>
+    .then(function(res) {
+      console.log('Successful fetching profile by handle', res);
       dispatch({
         type: GET_PROFILE,
         payload: res.data
-      })
-    )
-    .catch(err =>
+      });
+    })
+    .catch(function(err) {
+      console.log('Error fetching profile by handle', err);
       dispatch({
         type: GET_PROFILE,
         payload: null
-      })
-    );
+      });
+    });
 };
 
 // Create Profile
@@ -90,12 +92,13 @@ export const addEducation = (eduData, history) => dispatch => {
 export const deleteExperience = id => dispatch => {
   axios
     .delete(`/api/profile/experience/${id}`)
-    .then(res =>
+    .then(function(res) {
+      console.log('Response from deleting an experience', res);
       dispatch({
         type: GET_PROFILE,
         payload: res.data
-      })
-    )
+      });
+    })
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

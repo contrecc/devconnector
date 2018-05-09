@@ -12,13 +12,15 @@ import { getProfileByHandle } from '../../actions/profileActions';
 class Profile extends Component {
   componentDidMount() {
     if (this.props.match.params.handle) {
+      console.log('Handle in params is', this.props.match.params.handle);
       this.props.getProfileByHandle(this.props.match.params.handle);
     }
   }
 
   render() {
-    const { profile, loading } = this.props;
+    const { profile, loading } = this.props.profile;
     console.log('Props from Profile', profile);
+    console.log('Loading prop from Profile', loading);
     let profileContent;
 
     if (profile === null || loading) {

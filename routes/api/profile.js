@@ -67,6 +67,7 @@ router.get('/handle/:handle', (req, res) => {
         errors.noprofile = 'There is no profile for this user';
         return res.status(404).json(errors);
       }
+      console.log('Found profile by handle', profile);
       res.json(profile);
     })
     .catch(err => res.status(404).json(err));
@@ -291,11 +292,13 @@ router.delete(
   (req, res) => {
     Profile.findOne({ user: req.user.id })
       .then(profile => {
-        profile.experience.remove({ _id: req.params.exp_id });
+        // console.log(profile);
+        // res.json(profile);
 
+        profile.experience.remove({ _id: req.params.exp_id });
         profile
           .save()
-          .then(profile => res.json(profile.experience))
+          .then(profile => res.json(profile))
           .catch(err => res.json(err));
       })
       .catch(err => res.status(404).json(err));
@@ -311,12 +314,13 @@ router.delete(
   (req, res) => {
     Profile.findOne({ user: req.user.id })
       .then(profile => {
+        // console.log(profile);
+        // res.json(profile);
         profile.education.remove({ _id: req.params.edu_id });
         console.log('successfully deleted the education'); //MUST REMOVE **
-
         profile
           .save()
-          .then(profile => res.json(profile.education))
+          .then(profile => res.json(profile))
           .catch(err => res.json(err));
       })
       .catch(err => res.status(404).json(err));
