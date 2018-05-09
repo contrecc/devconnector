@@ -11,18 +11,9 @@ class Education extends Component {
 
   render() {
     const { education = [] } = this.props;
-    console.log('Education Props In Render', education);
+
     let educationTable = [];
 
-    // if (education.length === 0) {
-    //   educationTable = (
-    //     <tr>
-    //       <td>
-    //         <Spinner />
-    //       </td>
-    //     </tr>
-    //   );
-    // } else {
     educationTable = education.map(edu => (
       <tr key={edu._id}>
         <td>{edu.school}</td>
@@ -45,7 +36,7 @@ class Education extends Component {
         </td>
       </tr>
     ));
-    // }
+
     return (
       <div>
         <h4 className="mb-4">Education Credentials</h4>

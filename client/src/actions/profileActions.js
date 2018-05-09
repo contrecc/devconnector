@@ -34,14 +34,12 @@ export const getProfileByHandle = handle => dispatch => {
   axios
     .get(`/api/profile/handle/${handle}`)
     .then(function(res) {
-      console.log('Successful fetching profile by handle', res);
       dispatch({
         type: GET_PROFILE,
         payload: res.data
       });
     })
     .catch(function(err) {
-      console.log('Error fetching profile by handle', err);
       dispatch({
         type: GET_PROFILE,
         payload: null
@@ -93,7 +91,6 @@ export const deleteExperience = id => dispatch => {
   axios
     .delete(`/api/profile/experience/${id}`)
     .then(function(res) {
-      console.log('Response from deleting an experience', res);
       dispatch({
         type: GET_PROFILE,
         payload: res.data
@@ -112,14 +109,12 @@ export const deleteEducation = id => dispatch => {
   axios
     .delete(`/api/profile/education/${id}`)
     .then(function(res) {
-      console.log('Successful deleting education', res);
       dispatch({
         type: GET_PROFILE,
         payload: res.data
       });
     })
     .catch(function(err) {
-      console.log('Error deleting education', err);
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data

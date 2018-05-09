@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
+import PropTypes from 'prop-types';
 
 class ProfileCreds extends Component {
   render() {
@@ -88,5 +89,10 @@ class ProfileCreds extends Component {
     );
   }
 }
+
+ProfileCreds.propTypes = {
+  education: PropTypes.array.isRequired,
+  experience: PropTypes.array.isRequired
+};
 
 export default ProfileCreds;

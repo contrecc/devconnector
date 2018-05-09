@@ -6,7 +6,7 @@ import Spinner from '../common/Spinner';
 class ProfileHeader extends Component {
   render() {
     const { profile = {} } = this.props;
-    console.log('Props from ProfileHeader', profile);
+
     let profileContent;
 
     if (Object.keys(profile).length === 0) {

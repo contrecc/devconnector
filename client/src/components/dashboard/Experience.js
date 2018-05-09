@@ -11,18 +11,9 @@ class Experience extends Component {
 
   render() {
     const { experience = [] } = this.props;
-    console.log('Experience Props In Render', experience);
+
     let experienceTable = [];
 
-    // if (experience.length === 0) {
-    //   experienceTable = (
-    //     <tr>
-    //       <td>
-    //         <Spinner />
-    //       </td>
-    //     </tr>
-    //   );
-    // } else {
       experienceTable = experience.map(exp => (
         <tr key={exp._id}>
           <td>{exp.company}</td>
@@ -45,7 +36,7 @@ class Experience extends Component {
           </td>
         </tr>
       ));
-    // }
+
     return (
       <div>
         <h4 className="mb-4">Experience Credentials</h4>
