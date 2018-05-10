@@ -1,5 +1,4 @@
 // Auth Types
-export const GET_ERRORS = 'GET_ERRORS';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 
 // Profile Types
@@ -16,3 +15,6 @@ export const POST_LOADING = 'POST_LOADING';
 export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
 
+// Error Types
+export const GET_ERRORS = 'GET_ERRORS';
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
