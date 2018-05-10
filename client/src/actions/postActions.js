@@ -46,7 +46,7 @@ export const getPosts = () => dispatch => {
 };
 
 // Get One Post Action Creator
-export const getPost = (id) => dispatch => {
+export const getPost = id => dispatch => {
   dispatch(setPostLoading());
   axios
     .get(`/api/posts/${id}`)
@@ -100,6 +100,24 @@ export const removeLike = id => dispatch => {
   axios
     .post(`/api/posts/unlike/${id}`)
     .then(res => dispatch(getPosts()))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Add A Comment Action Creator
+export const addComment = (postId, commentData) => dispatch => {
+  axios
+    .post(`/api/posts/comment/${postId}`, commentData)
+    .then(res =>
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      })
+    )
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
