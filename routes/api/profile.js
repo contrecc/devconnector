@@ -163,7 +163,7 @@ router.post(
 
     //Skills - Split into an array
     if (typeof req.body.skills !== 'undefined') {
-      profileFields.skills = req.body.skills.split(',');
+      profileFields.skills = req.body.skills.split(',').map(item => item.trim());
     }
 
     Profile.findOne({ user: profileFields.user })
