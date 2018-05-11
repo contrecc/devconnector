@@ -28,7 +28,7 @@ import Post from './components/post/Post';
 
 import './App.css';
 
-require('dotenv').config();
+//require('dotenv').config();
 
 //Check for authorization token on every page load
 if (localStorage.jwtToken) {
